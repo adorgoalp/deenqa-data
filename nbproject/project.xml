@@ -6,10 +6,13 @@
             <name>ShoroeeShomadhanDataEntry</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>ক</word>
             <word>তর</word>
+            <word>দ</word>
             <word>ন</word>
             <word>শরয়</word>
             <word>সম</word>
+            <word>হক</word>
         </spellchecker-wordlist>
     </configuration>
 </project>
