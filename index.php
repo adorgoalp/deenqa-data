@@ -29,7 +29,7 @@ and open the template in the editor.
             //echo 'no becu in session';
         }
         ?>
-        <title>Backendless</title>
+        <title>DeenQA</title>
     </head>
     <body style="background-color: #245580;">
         <div class="container" style="padding: 300px; align-items: center;">

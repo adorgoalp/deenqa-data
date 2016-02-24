@@ -42,7 +42,7 @@ include_once './backendless/autoload.php';
             echo 'no becu in session';
         }
         ?>
-        <title>Backendless</title>
+        <title>Browse QA</title>
     </head>
     <body style="background-color: #245580;">
         <div class="container">
@@ -55,5 +55,7 @@ include_once './backendless/autoload.php';
                 </ul>
             </nav>
         </div>
+        
+        <p>Under construction</p>
     </body>
 </html>
