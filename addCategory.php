@@ -96,6 +96,7 @@ include_once './backendless/autoload.php';
                             <button  name="addCat" type="submit" class="pure-button btn-success" style="float: right" >Add</button>
                             <div class="clearfix"></div>
                         </div>
+                        
                         <div class="panel-body">
                             <?php
                                 $query = new BackendlessDataQuery();
@@ -108,7 +109,7 @@ include_once './backendless/autoload.php';
                                 $i = 1;
                                 foreach ($data as $d)
                                 {
-                                    echo $i++.'. '.$d['cat'].'<br>';
+                                    echo $i++.'. '.$d['cat'].' <a href="deleteCat.php?q='.$d['objectId'].'">Delete</a><br>';
                                 }
                                 }  catch (BackendlessException $ex)
                                 {
