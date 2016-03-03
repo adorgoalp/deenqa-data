@@ -20,7 +20,7 @@ and open the template in the editor.
         use backendless\Backendless;
         use backendless\model\BackendlessUser;
         use backendless\exception\BackendlessException;
-
+        use backendless\services\persistence\BackendlessDataQuery;
 include_once './backendless/autoload.php';
         Backendless::initApp('0F8F33A0-5515-0C9B-FFCB-F8A0A3E92A00', 'B1ACD24E-02A7-E964-FFA0-7D0ABB2FFD00', 'v1');
         if (isset($_SESSION['becu'])) {
@@ -50,7 +50,7 @@ include_once './backendless/autoload.php';
                 <ul class="nav nav-pills">
                     <li role="presentation" class="active"><a href="home.php">Insert QA</a></li>
                     <li role="presentation"><a href="browse.php">Browse QA</a></li>
-
+                    <li role="presentation"><a href="addCategory.php">Add Category</a></li>
                     <li role="presentation" class="navbar-right" style="padding-right: 20px;"><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -68,7 +68,7 @@ include_once './backendless/autoload.php';
                             </div>
                             <div class="form-group form-inline">
                                 <label>Asker name</label>
-                                <input id="askername" class="form-control" name="askerName">
+                                <input id="askername" class="form-control" name="askerName" required>
                                 <div class="form-group">
                                     <input type="checkbox" id="noname" name="noname">
                                     <label>নাম প্রকাশে অনিচ্ছুক</label>
@@ -93,9 +93,24 @@ include_once './backendless/autoload.php';
                                     <option value="ওলামায়ে কেরামবৃন্দ">ওলামায়ে কেরামবৃন্দ</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select name="category">
+                                    <?php
+                                    $query = new BackendlessDataQuery();
+                                    $query->setPageSize(100);
+                                    $data = Backendless::$Data->of('Category')->find($query)->getAsArray();
+                                    $data = array_reverse($data);
+                                    $i = 1;
+                                    foreach ($data as $d) {
+                                        echo ' <option value=" ' . $d['cat'] . ' ">'.$i++.'. '.$d['cat'].'</option>'. '<br>';
+                                    }
+//                                    ?>
+                                </select>
+                            </div>
 
                         </div>
-                        <div style="color: #23527c; font-size: large;">
+                        <div style="color: #23527c; font-size: large; padding-left: 20px;">
                             <?php
                             if (isset($_POST['insertData'])) {
                                 $question = filter_input(INPUT_POST, 'question');
@@ -105,14 +120,21 @@ include_once './backendless/autoload.php';
                                     $askerName = "নাম প্রকাশে অনিচ্ছুক";
                                 } else {
                                     $askerName = filter_input(INPUT_POST, 'askerName');
+                                    if($askerName==='')
+                                    {
+                                        $askerName = "নাম প্রকাশে অনিচ্ছুক";
+                                    }
                                 }
                                 $answeredBy = filter_input(INPUT_POST, 'answeredBy');
+                                $category = filter_input(INPUT_POST, 'category');
                                 //echo "q = $question <br> a = $answer <br> asker = $askerName <br> answerd = $answeredBy";
-                                $qa = new QA($question, $answer, $askerName, $answeredBy, FALSE);
+                                $qa = new QA($question, $answer, $askerName, $answeredBy, FALSE,$category);
                                 try {
-                                    $savedQA =  Backendless::$Persistence->save($qa);
-                                    //print_r($savedQA);
-                                    echo $savedQA['objectId'];
+                                    $savedQA = Backendless::$Persistence->save($qa);
+                                    if($savedQA !== NULL)
+                                    {
+                                        echo 'Alhamdulillah! Saved.';
+                                    }
                                 } catch (BackendlessException $ex) {
                                     echo $ex->getMessage();
                                 }
@@ -120,7 +142,7 @@ include_once './backendless/autoload.php';
                             ?>
                         </div>
                         <div class="panel-footer">
-                            <button  name="insertData" type="submit" class="pure-button btn-success" style="float: right" >Save QA and add Comment</button>
+                            <button  name="insertData" type="submit" class="pure-button btn-success" style="float: right" >Save</button>
                             <div class="clearfix"></div>
                         </div>
                     </div>

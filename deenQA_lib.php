@@ -5,12 +5,14 @@ class QA{
     var $questionBy;
     var $answeredBy;
     var $hidden;
-    function __construct($question, $answer, $questionBy, $answeredBy, $hidden) {
+    var $category;
+    function __construct($question, $answer, $questionBy, $answeredBy, $hidden, $category) {
         $this->question = $question;
         $this->answer = $answer;
         $this->questionBy = $questionBy;
         $this->answeredBy = $answeredBy;
         $this->hidden = $hidden;
+        $this->category = $category;
     }
     function getQuestion() {
         return $this->question;
@@ -30,6 +32,10 @@ class QA{
 
     function getHidden() {
         return $this->hidden;
+    }
+
+    function getCategory() {
+        return $this->category;
     }
 
     function setQuestion($question) {
@@ -52,6 +58,22 @@ class QA{
         $this->hidden = $hidden;
     }
 
+    function setCategory($category) {
+        $this->category = $category;
+    }
 
 
+}
+class Category{
+    var $cat;
+    function __construct($cat) {
+        $this->cat = $cat;
+    }
+    function getCat() {
+        return $this->cat;
+    }
+
+    function setCat($cat) {
+        $this->cat = $cat;
+    }
 }

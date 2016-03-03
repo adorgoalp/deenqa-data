@@ -126,6 +126,21 @@ class Persistence
         return RequestBuilder::doRequest( 'data', $this->extractObjectType( $data ) . '/' . $object_id, [], 'DELETE' );
         
     }
+    public function removeById( $type, $id ) {
+        
+        $object_id = $id;
+        
+        if( $object_id == null || $object_id == "" ) {
+            
+            throw new BackendlessException( "Missing objectId for remove data", $code );
+            
+        }
+        
+        $this->cheackTargetTable( $type, __METHOD__ ); // if call method of() check target table and  table in data structure
+        
+        return RequestBuilder::doRequest( 'data', $type . '/' . $object_id, [], 'DELETE' );
+        
+    }
     
     public function removeBulk( $condition ) {
         
