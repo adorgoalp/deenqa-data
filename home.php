@@ -21,6 +21,7 @@ and open the template in the editor.
         use backendless\model\BackendlessUser;
         use backendless\exception\BackendlessException;
         use backendless\services\persistence\BackendlessDataQuery;
+
 include_once './backendless/autoload.php';
         Backendless::initApp('0F8F33A0-5515-0C9B-FFCB-F8A0A3E92A00', 'B1ACD24E-02A7-E964-FFA0-7D0ABB2FFD00', 'v1');
         if (isset($_SESSION['becu'])) {
@@ -58,10 +59,13 @@ include_once './backendless/autoload.php';
                 <form action="home.php" method="post">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data entry form for Kajol vai and his team</h3>
+                            <h3 class="panel-title">DeenQA Data Entry</h3>
                         </div>
                         <div class="panel-body">
-
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input  class="form-control" placeholder="দিতেই হবে। নাহলে হবে না।" name="title" required>
+                            </div>
                             <div class="form-group">
                                 <label>Question</label>
                                 <textarea  class="form-control" placeholder="দিতেই হবে। নাহলে হবে না।" name="question" rows="5" required></textarea>
@@ -103,9 +107,10 @@ include_once './backendless/autoload.php';
                                     $data = array_reverse($data);
                                     $i = 1;
                                     foreach ($data as $d) {
-                                        echo ' <option value=" ' . $d['cat'] . ' ">'.$i++.'. '.$d['cat'].'</option>'. '<br>';
+                                        echo ' <option value=" ' . $d['cat'] . ' ">' . $i++ . '. ' . $d['cat'] . '</option>' . '<br>';
                                     }
-//                                    ?>
+//                                    
+                                    ?>
                                 </select>
                             </div>
 
@@ -113,6 +118,7 @@ include_once './backendless/autoload.php';
                         <div style="color: #23527c; font-size: large; padding-left: 20px;">
                             <?php
                             if (isset($_POST['insertData'])) {
+                                $title = filter_input(INPUT_POST, 'title');
                                 $question = filter_input(INPUT_POST, 'question');
                                 $answer = filter_input(INPUT_POST, 'answer');
                                 $askerName = "";
@@ -120,19 +126,17 @@ include_once './backendless/autoload.php';
                                     $askerName = "নাম প্রকাশে অনিচ্ছুক";
                                 } else {
                                     $askerName = filter_input(INPUT_POST, 'askerName');
-                                    if($askerName==='')
-                                    {
+                                    if ($askerName === '') {
                                         $askerName = "নাম প্রকাশে অনিচ্ছুক";
                                     }
                                 }
                                 $answeredBy = filter_input(INPUT_POST, 'answeredBy');
                                 $category = filter_input(INPUT_POST, 'category');
                                 //echo "q = $question <br> a = $answer <br> asker = $askerName <br> answerd = $answeredBy";
-                                $qa = new QA($question, $answer, $askerName, $answeredBy, FALSE,$category);
+                                $qa = new QA($title,$question, $answer, $askerName, $answeredBy, FALSE, $category);
                                 try {
                                     $savedQA = Backendless::$Persistence->save($qa);
-                                    if($savedQA !== NULL)
-                                    {
+                                    if ($savedQA !== NULL) {
                                         echo 'Alhamdulillah! Saved.';
                                     }
                                 } catch (BackendlessException $ex) {

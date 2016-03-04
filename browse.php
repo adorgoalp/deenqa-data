@@ -74,12 +74,13 @@ include_once './backendless/autoload.php';
                                     $i = 1;
                                     foreach ($data as $qa) {
                                         echo '<tr><td><ul class="list-group">';
-                                        echo '<li class="list-group-item">Question No- '.$i++.'</li>';
-                                        echo '<li class="list-group-item">Category- '.$qa['category'].'</li>';
-                                        echo '<li class="list-group-item">প্রশ্ন- <br> '.$qa['question'].'</li>';
-                                        echo '<li class="list-group-item">প্রশ্ন করেছেন- '.$qa['questionBy'].'</li>';
-                                        echo '<li class="list-group-item">উত্তর- <br> '.$qa['answer'].'</li>';
-                                        echo '<li class="list-group-item">উত্তর দিয়েছেন- '.$qa['answeredBy'].'</li>';
+                                        echo '<li class="list-group-item"><strong>Question No</strong>- '.$i++.'</li>';
+                                        echo '<li class="list-group-item"><strong>Category</strong>- '.$qa['category'].'</li>';
+                                        echo '<li class="list-group-item"><strong>Title</strong>- '.$qa['title'].'</li>';
+                                        echo '<li class="list-group-item"><strong>প্রশ্ন</strong>- <br> '.$qa['question'].'</li>';
+                                        echo '<li class="list-group-item"><strong>প্রশ্ন করেছেন</strong>- '.$qa['questionBy'].'</li>';
+                                        echo '<li class="list-group-item"><strong>উত্তর</strong>- <br> '.$qa['answer'].'</li>';
+                                        echo '<li class="list-group-item"><strong>উত্তর দিয়েছেন</strong>- '.$qa['answeredBy'].'</li>';
                                         echo '<li class="list-group-item"><a href="delete.php?q='.$qa['objectId'].'"'.'>Delete</a></li>';
                                         echo '</ul></td></tr>';
                                     }

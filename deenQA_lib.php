@@ -1,12 +1,14 @@
 <?php
 class QA{
+    var $title;
     var $question;
     var $answer;
     var $questionBy;
     var $answeredBy;
     var $hidden;
     var $category;
-    function __construct($question, $answer, $questionBy, $answeredBy, $hidden, $category) {
+    function __construct($title, $question, $answer, $questionBy, $answeredBy, $hidden, $category) {
+        $this->title = $title;
         $this->question = $question;
         $this->answer = $answer;
         $this->questionBy = $questionBy;
@@ -14,6 +16,10 @@ class QA{
         $this->hidden = $hidden;
         $this->category = $category;
     }
+    function getTitle() {
+        return $this->title;
+    }
+
     function getQuestion() {
         return $this->question;
     }
@@ -36,6 +42,10 @@ class QA{
 
     function getCategory() {
         return $this->category;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
     }
 
     function setQuestion($question) {
@@ -61,8 +71,6 @@ class QA{
     function setCategory($category) {
         $this->category = $category;
     }
-
-
 }
 class Category{
     var $cat;
