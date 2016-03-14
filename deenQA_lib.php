@@ -85,3 +85,38 @@ class Category{
         $this->cat = $cat;
     }
 }
+class PendingQA{
+    var $question;
+    var $questionBy;
+    var $email;
+    function __construct($question, $questionBy, $email) {
+        $this->question = $question;
+        $this->questionBy = $questionBy;
+        $this->email = $email;
+    }
+    function getQuestion() {
+        return $this->question;
+    }
+
+    function getQuestionBy() {
+        return $this->questionBy;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function setQuestion($question) {
+        $this->question = $question;
+    }
+
+    function setQuestionBy($questionBy) {
+        $this->questionBy = $questionBy;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+
+}

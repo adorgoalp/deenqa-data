@@ -90,11 +90,11 @@ include_once './backendless/autoload.php';
                             <div class="form-group">
                                 <label>Answered by</label>
                                 <select name="answeredBy">
-                                    <option value="মুফতি জিয়া রহমান">মুফতি জিয়া রহমান</option>
-                                    <option value="মুফতি দানিয়াল মাহমুদ">মুফতি দানিয়াল মাহমুদ</option>
-                                    <option value="হাফেজ মুফতি এম. এম. এইচ. সালেহ আহমেদ">হাফেজ মুফতি এম. এম. এইচ. সালেহ আহমেদ</option>
-                                    <option value="মুফতি এমদাদ হক">মুফতি এমদাদ হক</option>
-                                    <option value="ওলামায়ে কেরামবৃন্দ">ওলামায়ে কেরামবৃন্দ</option>
+                                    <option value="হাফেয মুফতি জিয়া রাহমান (দাঃ বাঃ)">হাফেয মুফতি জিয়া রাহমান (দাঃ বাঃ)</option>
+                                    <option value="হাফেজ মুফতি সালেহ আহমদ (দাঃ বাঃ)">হাফেজ মুফতি সালেহ আহমদ (দাঃ বাঃ)</option>
+                                    <option value="মুফতি দানিয়াল মাহমূদ (দাঃ বাঃ)">মুফতি দানিয়াল মাহমূদ (দাঃ বাঃ)</option>
+                                    <option value="মুফতি ইমদাদুল হক (দাঃ বাঃ)">মুফতি ইমদাদুল হক (দাঃ বাঃ)</option>
+                                    <option value="ওলামায়ে কেরামবৃন্দ (দাঃ বাঃ)">ওলামায়ে কেরামবৃন্দ (দাঃ বাঃ)</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -133,7 +133,7 @@ include_once './backendless/autoload.php';
                                 $answeredBy = filter_input(INPUT_POST, 'answeredBy');
                                 $category = filter_input(INPUT_POST, 'category');
                                 //echo "q = $question <br> a = $answer <br> asker = $askerName <br> answerd = $answeredBy";
-                                $qa = new QA($title,$question, $answer, $askerName, $answeredBy, FALSE, $category);
+                                $qa = new QA($title, $question, $answer, $askerName, $answeredBy, FALSE, $category);
                                 try {
                                     $savedQA = Backendless::$Persistence->save($qa);
                                     if ($savedQA !== NULL) {
