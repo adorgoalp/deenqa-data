@@ -45,16 +45,16 @@ include_once './backendless/autoload.php';
         }
         include_once './deenQA_lib.php';
         ?>
-        <title>Browse QA</title>
+        <title>New QA</title>
     </head>
     <body style="background-color: #245580;">
         <div class="container">
             <nav class="navbar navbar-default">
                 <ul class="nav nav-pills">
                     <li role="presentation"><a href="home.php">Insert QA</a></li>
-                    <li role="presentation" class="active"><a href="browse.php">Browse QA</a></li>
+                    <li role="presentation"><a href="browse.php">Browse QA</a></li>
                     <li role="presentation"><a href="addCategory.php">Add Category</a></li>
-                    <li role="presentation"><a href="newQA.php">New QA</a></li>
+                    <li role="presentation" class="active"><a href="newQA.php">New QA</a></li>
                     <li role="presentation" class="navbar-right" style="padding-right: 20px;"><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -79,13 +79,13 @@ include_once './backendless/autoload.php';
                                 $query = new BackendlessDataQuery();
                                 $query->setPageSize(10);
                                 $query->setOffset($offset);
-                                $data = Backendless::$Data->of('QA')->find($query)->getAsArray();
+                                $data = Backendless::$Data->of('PendingQA')->find($query)->getAsArray();
                                 $i = 1 + $offset;
                                 foreach ($data as $d) {
                                     echo '<tr>';
                                     echo '<td>' . $i++ . '</td>';
-                                    echo '<td>' . $d['title'] . '</td>';
-                                    echo '<td><a href="reviewQA.php?q=' . $d['objectId'] . '" target="_blank">Review</a></td>';
+                                    echo '<td>' . $d['question'] . '</td>';
+                                    echo '<td><a href="reviewNewQA.php?q=' . $d['objectId'] . '" target="_blank">Review</a></td>';
                                     echo '</tr>';
                                 }
                                 ?>

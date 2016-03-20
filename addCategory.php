@@ -52,6 +52,7 @@ include_once './backendless/autoload.php';
                     <li role="presentation"><a href="home.php">Insert QA</a></li>
                     <li role="presentation"><a href="browse.php">Browse QA</a></li>
                     <li role="presentation" class="active"><a href="addCategory.php">Add Category</a></li>
+                    <li role="presentation"><a href="newQA.php">New QA</a></li>
                     <li role="presentation" class="navbar-right" style="padding-right: 20px;"><a href="logout.php">Logout</a></li>
                 </ul>
             </nav>
